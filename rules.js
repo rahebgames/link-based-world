@@ -239,6 +239,7 @@ class Battle extends Scene {
         this.locationData.Strengthen.AP = 3;
         this.locationData.Gigaflare.AP = 3;
         this.locationData.Turn = "Player";
+        this.engine.hp = this.engine.maxhp;
     }
 }
 
