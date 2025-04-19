@@ -1,0 +1,2103 @@
+{
+    "Title": "Generic Dungeon Crawler",
+    "Credits": "Created by Cici Raheb (craheb@ucsc.edu).",
+    "InitialLocation": "I4",
+    "Enemies": {
+        "Goblin": {
+            "HP": 10,
+            "ATK": [2, 5],
+            "Weights": [3, 2]
+        },
+        "Slime": {
+            "HP": 20,
+            "ATK": [5, 7],
+            "Weights": [1, 1]
+        },
+        "Orc": {
+            "HP": 30,
+            "ATK": [5, 8, 10],
+            "Weights": [2, 2, 1]
+        },
+        "Troll": {
+            "HP": 30,
+            "ATK": [8, 12, 15],
+            "Weights": [1, 2, 1]
+        },
+        "Drake": {
+            "HP": 40,
+            "ATK": [10, 15, 18],
+            "Weights": [2, 2, 1]
+        },
+        "Dragon": {
+            "HP": 50,
+            "ATK": [20, 25],
+            "Weights": [1, 1]
+        }
+    },
+    "Locations": {
+        "Battle": {
+            "Enemy": "NULL",
+            "ReturnTarget": "NULL",
+            "EnemyHP": "NULL",
+            "Turn": "Player",
+            "Heal": {
+                "AP": 3
+            },
+            "Defend": {
+                "Status": "False",
+                "TurnsLeft": 0,
+                "AP": 5
+            },
+            "Stun": {
+                "Status": "False",
+                "TurnsLeft": 0,
+                "AP": 2
+            },
+            "Strengthen": {
+                "Status": "False",
+                "TurnsLeft": 0,
+                "AP": 3
+            },
+            "Gigaflare": {
+                "AP": 3
+            },
+            "Choices": ["Attack", "Heal", "Defend", "Stun", "Strengthen", "Gigaflare", "Run"]
+        },
+        "A6": {
+            "Type": "Enemy",
+            "Enemy": "Slime",
+            "Defeated": "False",
+            "Body": "The spot where you valiantly slayed that Slime.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "B6"
+                }
+            ]
+        },
+        "B1": {
+            "Type": "Heal",
+            "Available": "True",
+            "ShowInitial": "True",
+            "Body1": "You found a safe zone. Heal?",
+            "Body2": "You found a safe zone.",
+            "Choices": [
+                {
+                    "Initial": "True",
+                    "Text": "Yes",
+                    "Target": "B1"
+                },
+                {
+                    "Initial": "True",
+                    "Text": "No",
+                    "Target": "B1"
+                },
+                {
+                    "Initial": "False",
+                    "Text": "Go North",
+                    "Target": "B2"
+                }
+            ]
+        },
+        "B2": {
+            "Type": "Location",
+            "Body": "You sense a safe zone nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "B3"
+                },
+                {
+                    "Text": "Go East",
+                    "Target": "C2"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "B1"
+                }
+            ]
+        },
+        "B3": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "B4"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "B2"
+                }
+            ]
+        },
+        "B4": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "B5"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "B3"
+                }
+            ]
+        },
+        "B5": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "B6"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "B4"
+                }
+            ]
+        },
+        "B6": {
+            "Type": "Location",
+            "Body": "You sense an enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "B7"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "B5"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "A6"
+                }
+            ]
+        },
+        "B7": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "B8"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "B6"
+                }
+            ]
+        },
+        "B8": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "B9"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "B7"
+                }
+            ]
+        },
+        "B9": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "B10"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "B8"
+                }
+            ]
+        },
+        "B10": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "C10"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "B9"
+                }
+            ]
+        },
+        "C2": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "D2"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "B2"
+                }
+            ]
+        },
+        "C10": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "D10"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "B10"
+                }
+            ]
+        },
+        "C14": {
+            "Type": "Heal",
+            "Available": "True",
+            "ShowInitial": "True",
+            "Body1": "You found a safe zone. Heal?",
+            "Body2": "You found a safe zone.",
+            "Choices": [
+                {
+                    "Initial": "True",
+                    "Text": "Yes",
+                    "Target": "C14"
+                },
+                {
+                    "Initial": "True",
+                    "Text": "No",
+                    "Target": "C14"
+                },
+                {
+                    "Initial": "False",
+                    "Text": "Go East",
+                    "Target": "D14"
+                }
+            ]
+        },
+        "D2": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "E2"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "C2"
+                }
+            ]
+        },
+        "D6": {
+            "Type": "Location",
+            "Body": "You sense an enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "D7"
+                },
+                {
+                    "Text": "Go East",
+                    "Target": "E6"
+                }
+            ]
+        },
+        "D7": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "D8"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "D6"
+                }
+            ]
+        },
+        "D8": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "E8"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "D7"
+                }
+            ]
+        },
+        "D10": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "E10"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "C10"
+                }
+            ]
+        },
+        "D12": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "E12"
+                },
+                {
+                    "Text": "Go North",
+                    "Target": "D13"
+                }
+            ]
+        },
+        "D13": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "D14"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "D12"
+                }
+            ]
+        },
+        "D14": {
+            "Type": "Location",
+            "Body": "You sense a safe zone nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "D15"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "D13"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "C14"
+                }
+            ]
+        },
+        "D15": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "E15"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "D14"
+                }
+            ]
+        },
+        "E2": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "F2"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "D2"
+                }
+            ]
+        },
+        "E5": {
+            "Type": "Location",
+            "Body": "You sense an enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "E6"
+                },
+                {
+                    "Text": "Go East",
+                    "Target": "F5"
+                }
+            ]
+        },
+        "E6": {
+            "Type": "Enemy",
+            "Enemy": "Goblin",
+            "Defeated": "False",
+            "Body": "The spot where you valiantly slayed that Goblin.",
+            "Choices": [
+                {
+                    "Text": "Go South",
+                    "Target": "E5"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "D6"
+                }
+            ]
+        },
+        "E8": {
+            "Type": "Location",
+            "Body": "You sense an enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "E9"
+                },
+                {
+                    "Text": "Go East",
+                    "Target": "F8"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "D8"
+                }
+            ]
+        },
+        "E9": {
+            "Type": "Enemy",
+            "Enemy": "Slime",
+            "Defeated": "False",
+            "Body": "The spot where you valiantly slayed that Slime.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "E10"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "E8"
+                }
+            ]
+        },
+        "E10": {
+            "Type": "Location",
+            "Body": "You sense an enemy and a safe zone nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "E11"
+                },
+                {
+                    "Text": "Go East",
+                    "Target": "F10"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "E9"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "D10"
+                }
+            ]
+        },
+        "E11": {
+            "Type": "Heal",
+            "Available": "True",
+            "ShowInitial": "True",
+            "Body1": "You found a safe zone. Heal?",
+            "Body2": "You found a safe zone.",
+            "Choices": [
+                {
+                    "Initial": "True",
+                    "Text": "Yes",
+                    "Target": "E11"
+                },
+                {
+                    "Initial": "True",
+                    "Text": "No",
+                    "Target": "E11"
+                },
+                {
+                    "Initial": "False",
+                    "Text": "Go North",
+                    "Target": "E12"
+                },
+                {
+                    "Initial": "False",
+                    "Text": "Go South",
+                    "Target": "E10"
+                }
+            ]
+        },
+        "E12": {
+            "Type": "Location",
+            "Body": "You sense a safe zone nearby.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "F12"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "E11"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "D12"
+                }
+            ]
+        },
+        "E15": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "E16"
+                },
+                {
+                    "Text": "Go East",
+                    "Target": "F15"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "D15"
+                }
+            ]
+        },
+        "E16": {
+            "Type": "Location",
+            "Body": "You sense a really tough enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "E17"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "E15"
+                }
+            ]
+        },
+        "E17": {
+            "Type": "Special",
+            "Enemy": "Drake",
+            "Defeated": "False",
+            "Skill": "Stun",
+            "Body": "The spot where you valiantly slayed that Drake.",
+            "Choices": [
+                {
+                    "Text": "Go South",
+                    "Target": "E16"
+                }
+            ]
+        },
+        "F2": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "G2"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "E2"
+                }
+            ]
+        },
+        "F4": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "F5"
+                },
+                {
+                    "Text": "Go East",
+                    "Target": "G4"
+                }
+            ]
+        },
+        "F5": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go South",
+                    "Target": "F4"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "E5"
+                }
+            ]
+        },
+        "F8": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "G8"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "E8"
+                }
+            ]
+        },
+        "F10": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "G10"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "E10"
+                }
+            ]
+        },
+        "F12": {
+            "Type": "Location",
+            "Body": "You sense an enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "G12"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "E12"
+                }
+            ]
+        },
+        "F15": {
+            "Type": "Location",
+            "Body": "You sense a *key* item nearby.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "G15"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "E15"
+                }
+            ]
+        },
+        "G1": {
+            "Type": "Special",
+            "Enemy": "Slime",
+            "Defeated": "False",
+            "Skill": "Defend",
+            "Body": "The spot where you valiantly slayed that Slime.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "G2"
+                }
+            ]
+        },
+        "G2": {
+            "Type": "Location",
+            "Body": "You sense a really tough enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "G3"
+                },
+                {
+                    "Text": "Go East",
+                    "Target": "H2"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "G1"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "F2"
+                }
+            ]
+        },
+        "G3": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "G4"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "G2"
+                }
+            ]
+        },
+        "G4": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "H4"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "G3"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "F4"
+                }
+            ]
+        },
+        "G8": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "H8"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "F8"
+                }
+            ]
+        },
+        "G10": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "H10"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "F10"
+                }
+            ]
+        },
+        "G12": {
+            "Type": "Enemy",
+            "Enemy": "Orc",
+            "Defeated": "False",
+            "Body": "The spot where you valiantly slayed that Orc.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "H12"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "F12"
+                }
+            ]
+        },
+        "G15": {
+            "Type": "Key",
+            "Body": "You found a key!",
+            "Choices": [
+                {
+                    "Text": "Go West",
+                    "Target": "F15"
+                }
+            ]
+        },
+        "H2": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "I2"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "G2"
+                }
+            ]
+        },
+        "H4": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "H5"
+                },
+                {
+                    "Text": "Go East",
+                    "Target": "I4"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "G4"
+                }
+            ]
+        },
+        "H5": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "H6"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "H4"
+                }
+            ]
+        },
+        "H6": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "H7"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "H5"
+                }
+            ]
+        },
+        "H7": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "H8"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "H6"
+                }
+            ]
+        },
+        "H8": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "I8"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "H7"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "G8"
+                }
+            ]
+        },
+        "H10": {
+            "Type": "Location",
+            "Body": "You sense a really tough enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "H11"
+                },
+                {
+                    "Text": "Go East",
+                    "Target": "I10"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "G10"
+                }
+            ]
+        },
+        "H11": {
+            "Type": "Special",
+            "Enemy": "Troll",
+            "Defeated": "False",
+            "Skill": "Heal",
+            "Body": "The spot where you valiantly slayed that Troll.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "H12"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "H10"
+                }
+            ]
+        },
+        "H12": {
+            "Type": "Location",
+            "Body": "You sense multiple enemies nearby. One of them feels really tough.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "I12"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "H10"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "G12"
+                }
+            ]
+        },
+        "I2": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "J2"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "H2"
+                }
+            ]
+        },
+        "I4": {
+            "Type": "Location",
+            "Body": "You find yourself in a dungeon, with a strange feeling like you're supposed to go kill a dragon or something. You also feel like you've heard this sentence before.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "J4"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "H4"
+                }
+            ]
+        },
+        "I8": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "J8"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "H8"
+                }
+            ]
+        },
+        "I10": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "J10"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "H10"
+                }
+            ]
+        },
+        "I12": {
+            "Type": "Enemy",
+            "Enemy": "Orc",
+            "Defeated": "False",
+            "Body": "The spot where you valiantly slayed that Orc.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "J12"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "H12"
+                }
+            ]
+        },
+        "I15": {
+            "Type": "Goal",
+            "Enemy": "Dragon",
+            "Defeated": "False",
+            "Body": "I like dragons they're cool.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "I16"
+                }
+            ]
+        },
+        "I16": {
+            "Type": "Heal",
+            "Available": "True",
+            "ShowInitial": "True",
+            "Body1": "You found a safe zone. Heal?",
+            "Body2": "You found a safe zone.",
+            "Choices": [
+                {
+                    "Initial": "True",
+                    "Text": "Yes",
+                    "Target": "I16"
+                },
+                {
+                    "Initial": "True",
+                    "Text": "No",
+                    "Target": "I16"
+                },
+                {
+                    "Initial": "False",
+                    "Text": "Go North",
+                    "Target": "I17"
+                },
+                {
+                    "Initial": "False",
+                    "Text": "Go South",
+                    "Target": "I15"
+                }
+            ]
+        },
+        "I17": {
+            "Type": "Lock",
+            "Locked": "True",
+            "Body1": "You walk closer and reach that door. You spot a small keyhole on the side.",
+            "Body2": "You stand in front of that door you unlocked.",
+            "Choices": [
+                {
+                    "Locked": "False",
+                    "Text": "Go East",
+                    "Target": "J17"
+                },
+                {
+                    "Locked": "True",
+                    "Text": "Go South",
+                    "Target": "I16"
+                }
+            ]
+        },
+        "J2": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "K2"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "I2"
+                }
+            ]
+        },
+        "J4": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "K4"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "I4"
+                }
+            ]
+        },
+        "J8": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "K8"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "I8"
+                }
+            ]
+        },
+        "J10": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "K10"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "I10"
+                }
+            ]
+        },
+        "J12": {
+            "Type": "Location",
+            "Body": "You sense an enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "K12"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "I12"
+                }
+            ]
+        },
+        "J17": {
+            "Type": "Location",
+            "Body": "You feel like you're right in front of a really big door.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "K17"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "I17"
+                }
+            ]
+        },
+        "K1": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "K2"
+                }
+            ]
+        },
+        "K2": {
+            "Type": "Location",
+            "Body": "You sense an enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "K3"
+                },
+                {
+                    "Text": "Go East",
+                    "Target": "L2"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "K1"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "J2"
+                }
+            ]
+        },
+        "K3": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "K4"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "K2"
+                }
+            ]
+        },
+        "K4": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "K5"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "K3"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "J4"
+                }
+            ]
+        },
+        "K5": {
+            "Type": "Location",
+            "Body": "You sense an enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "K6"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "K4"
+                }
+            ]
+        },
+        "K6": {
+            "Type": "Enemy",
+            "Enemy": "Goblin",
+            "Defeated": "False",
+            "Body": "The spot where you valiantly slayed that Goblin.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "L6"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "K5"
+                }
+            ]
+        },
+        "K8": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "L8"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "J8"
+                }
+            ]
+        },
+        "K10": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "L10"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "J10"
+                }
+            ]
+        },
+        "K12": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "L12"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "J12"
+                }
+            ]
+        },
+        "K15": {
+            "Type": "Special",
+            "Enemy": "Drake",
+            "Defeated": "False",
+            "Skill": "Gigaflare",
+            "Body": "The spot where you valiantly slayed that Drake.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "K16"
+                }
+            ]
+        },
+        "K16": {
+            "Type": "Location",
+            "Body": "You sense a really tough enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "K17"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "K15"
+                }
+            ]
+        },
+        "K17": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly but also less insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "L17"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "K16"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "J17"
+                }
+            ]
+        },
+        "L2": {
+            "Type": "Enemy",
+            "Enemy": "Goblin",
+            "Defeated": "False",
+            "Body": "The spot where you valiantly slayed that Goblin.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "M2"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "K2"
+                }
+            ]
+        },
+        "L6": {
+            "Type": "Location",
+            "Body": "You sense an enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "M6"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "K6"
+                }
+            ]
+        },
+        "L8": {
+            "Type": "Location",
+            "Body": "You sense an enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "L9"
+                },
+                {
+                    "Text": "Go East",
+                    "Target": "M8"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "K8"
+                }
+            ]
+        },
+        "L9": {
+            "Type": "Enemy",
+            "Enemy": "Slime",
+            "Defeated": "False",
+            "Body": "The spot where you valiantly slayed that Slime.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "L10"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "L8"
+                }
+            ]
+        },
+        "L10": {
+            "Type": "Location",
+            "Body": "You sense an enemy and a safe zone nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "L11"
+                },
+                {
+                    "Text": "Go East",
+                    "Target": "M10"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "L9"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "K10"
+                }
+            ]
+        },
+        "L11": {
+            "Type": "Heal",
+            "Available": "True",
+            "ShowInitial": "True",
+            "Body1": "You found a safe zone. Heal?",
+            "Body2": "You found a safe zone.",
+            "Choices": [
+                {
+                    "Initial": "True",
+                    "Text": "Yes",
+                    "Target": "L11"
+                },
+                {
+                    "Initial": "True",
+                    "Text": "No",
+                    "Target": "L11"
+                },
+                {
+                    "Initial": "False",
+                    "Text": "Go North",
+                    "Target": "L12"
+                },
+                {
+                    "Initial": "False",
+                    "Text": "Go South",
+                    "Target": "L10"
+                }
+            ]
+        },
+        "L12": {
+            "Type": "Location",
+            "Body": "You sense a safe zone nearby.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "M12"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "L11"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "K12"
+                }
+            ]
+        },
+        "L17": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "M17"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "K17"
+                }
+            ]
+        },
+        "M2": {
+            "Type": "Location",
+            "Body": "You sense an enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "N2"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "L2"
+                }
+            ]
+        },
+        "M5": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "M6"
+                },
+                {
+                    "Text": "Go East",
+                    "Target": "N5"
+                }
+            ]
+        },
+        "M6": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "N6"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "M5"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "L6"
+                }
+            ]
+        },
+        "M8": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "N8"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "L8"
+                }
+            ]
+        },
+        "M10": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "N10"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "L10"
+                }
+            ]
+        },
+        "M12": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "M13"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "L12"
+                }
+            ]
+        },
+        "M13": {
+            "Type": "Location",
+            "Body": "You sense an enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "N13"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "M12"
+                }
+            ]
+        },
+        "M16": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "M17"
+                },
+                {
+                    "Text": "Go East",
+                    "Target": "N16"
+                }
+            ]
+        },
+        "M17": {
+            "Type": "Location",
+            "Body": "You sense an enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "N17"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "M16"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "L17"
+                }
+            ]
+        },
+        "N2": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "O2"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "M2"
+                }
+            ]
+        },
+        "N4": {
+            "Type": "Heal",
+            "Available": "True",
+            "ShowInitial": "True",
+            "Body1": "You found a safe zone. Heal?",
+            "Body2": "You found a safe zone.",
+            "Choices": [
+                {
+                    "Initial": "True",
+                    "Text": "Yes",
+                    "Target": "N4"
+                },
+                {
+                    "Initial": "True",
+                    "Text": "No",
+                    "Target": "N4"
+                },
+                {
+                    "Initial": "False",
+                    "Text": "Go North",
+                    "Target": "N5"
+                }
+            ]
+        },
+        "N5": {
+            "Type": "Location",
+            "Body": "You sense a safe zone nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "N6"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "N4"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "M5"
+                }
+            ]
+        },
+        "N6": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "N7"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "N5"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "M6"
+                }
+            ]
+        },
+        "N7": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "N8"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "N6"
+                }
+            ]
+        },
+        "N8": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go South",
+                    "Target": "N7"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "M8"
+                }
+            ]
+        },
+        "N10": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "O10"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "M10"
+                }
+            ]
+        },
+        "N13": {
+            "Type": "Enemy",
+            "Enemy": "Troll",
+            "Defeated": "False",
+            "Body": "The spot where you valiantly slayed that Troll.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "O13"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "M13"
+                }
+            ]
+        },
+        "N15": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway. You also feel like you're getting close to the end of your journey.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "N16"
+                },
+                {
+                    "Text": "Go East",
+                    "Target": "O15"
+                }
+            ]
+        },
+        "N16": {
+            "Type": "Location",
+            "Body": "You sense an enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "N17"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "N15"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "M16"
+                }
+            ]
+        },
+        "N17": {
+            "Type": "Enemy",
+            "Enemy": "Troll",
+            "Defeated": "False",
+            "Body": "The spot where you valiantly slayed that Troll.",
+            "Choices": [
+                {
+                    "Text": "Go South",
+                    "Target": "N16"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "M17"
+                }
+            ]
+        },
+        "O2": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "P2"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "N2"
+                }
+            ]
+        },
+        "O10": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go East",
+                    "Target": "P10"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "N10"
+                }
+            ]
+        },
+        "O13": {
+            "Type": "Location",
+            "Body": "You sense an enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "O14"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "N13"
+                }
+            ]
+        },
+        "O14": {
+            "Type": "Location",
+            "Body": "You sense a safe zone nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "O15"
+                },
+                {
+                    "Text": "Go East",
+                    "Target": "P14"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "O13"
+                }
+            ]
+        },
+        "O15": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go South",
+                    "Target": "O14"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "N15"
+                }
+            ]
+        },
+        "P1": {
+            "Type": "Heal",
+            "Available": "True",
+            "ShowInitial": "True",
+            "Body1": "You found a safe zone. Heal?",
+            "Body2": "You found a safe zone.",
+            "Choices": [
+                {
+                    "Initial": "True",
+                    "Text": "Yes",
+                    "Target": "P1"
+                },
+                {
+                    "Initial": "True",
+                    "Text": "No",
+                    "Target": "P1"
+                },
+                {
+                    "Initial": "False",
+                    "Text": "Go North",
+                    "Target": "P2"
+                }
+            ]
+        },
+        "P2": {
+            "Type": "Location",
+            "Body": "You sense a safe zone nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "P3"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "P1"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "O2"
+                }
+            ]
+        },
+        "P3": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "P4"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "P2"
+                }
+            ]
+        },
+        "P4": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "P5"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "P3"
+                }
+            ]
+        },
+        "P5": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "P6"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "P4"
+                }
+            ]
+        },
+        "P6": {
+            "Type": "Location",
+            "Body": "You sense a really tough enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "P7"
+                },
+                {
+                    "Text": "Go East",
+                    "Target": "Q6"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "P5"
+                }
+            ]
+        },
+        "P7": {
+            "Type": "Location",
+            "Body": "You feel like you're in a mostly insignificant hallway.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "P8"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "P6"
+                }
+            ]
+        },
+        "P8": {
+            "Type": "Location",
+            "Body": "You sense an enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "P9"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "P7"
+                }
+            ]
+        },
+        "P9": {
+            "Type": "Enemy",
+            "Enemy": "Goblin",
+            "Defeated": "False",
+            "Body": "The spot where you valiantly slayed that Goblin.",
+            "Choices": [
+                {
+                    "Text": "Go North",
+                    "Target": "P10"
+                },
+                {
+                    "Text": "Go South",
+                    "Target": "P8"
+                }
+            ]
+        },
+        "P10": {
+            "Type": "Location",
+            "Body": "You sense an enemy nearby.",
+            "Choices": [
+                {
+                    "Text": "Go South",
+                    "Target": "P9"
+                },
+                {
+                    "Text": "Go West",
+                    "Target": "O10"
+                }
+            ]
+        },
+        "P14": {
+            "Type": "Heal",
+            "Available": "True",
+            "ShowInitial": "True",
+            "Body1": "You found a safe zone. Heal?",
+            "Body2": "You found a safe zone.",
+            "Choices": [
+                {
+                    "Initial": "True",
+                    "Text": "Yes",
+                    "Target": "P14"
+                },
+                {
+                    "Initial": "True",
+                    "Text": "No",
+                    "Target": "P14"
+                },
+                {
+                    "Initial": "False",
+                    "Text": "Go West",
+                    "Target": "O14"
+                }
+            ]
+        },
+        "Q6": {
+            "Type": "Special",
+            "Enemy": "Orc",
+            "Defeated": "False",
+            "Skill": "Strengthen",
+            "Body": "The spot where you valiantly slayed that Orc.",
+            "Choices": [
+                {
+                    "Text": "Go West",
+                    "Target": "P6"
+                }
+            ]
+        }
+    }
+}
